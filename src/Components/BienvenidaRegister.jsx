@@ -15,6 +15,7 @@ export default function BienvenidaRegister(props) {
 
 const styles = StyleSheet.create({
   bienvenida: {
+    marginTop:90,
     alignItems: 'center',
     justifyContent: "flex-start",
   },

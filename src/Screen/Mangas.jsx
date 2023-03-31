@@ -120,6 +120,7 @@ const styles = {
   },
   fondoMangaImg:{
     width:"100%",
+    marginTop: 20
   },
   fondoManga: {
     width:"100%",

@@ -7,11 +7,10 @@ export default function ContFormLogin() {
   return (
     <ScrollView style={styles.container}>
       <BienvenidaRegister text="Welcome!" />
-      <FormLogin/>
+      <FormLogin />
     </ScrollView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     display: "flex",

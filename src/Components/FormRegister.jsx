@@ -18,7 +18,7 @@ export default function FormRegister() {
         photo: photo,
         password: password
     }
-    console.log(data);
+    
     let url = 'https://minga-host.onrender.com/auth/signup'
     try {
         await axios.post(url, data)

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-
 import bg from '../../assets/home.png';
 import TituloSeccion1Hero1 from '../Components/TituloSeccion1Hero';
 import Parrafo1Seccion1Hero1 from '../Components/Parrafo1Seccion1Hero';
 import BotonSeccion1Hero1 from '../Components/BotonSeccion1Hero';
-import ContFormLogin from './ContFormLogin';
+import FormLogin from '../Components/FormLogin';
 
 export default function Seccion1Hero1() {
+
   return (
     <ImageBackground source={bg} style={styles.backgroundImage}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -19,7 +19,7 @@ export default function Seccion1Hero1() {
           </View>
         </View>
         <View style={styles.seccion2}>
-          <ContFormLogin />
+          <FormLogin />
         </View>
       </ScrollView>
     </ImageBackground>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   },
   seccion2: {
     height: "100%",
+    backgroundColor: "white"
   },
   texto: {
     alignItems: 'center',

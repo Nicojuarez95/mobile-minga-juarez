@@ -24,7 +24,7 @@ export default function CardMangas({title, category, photo }) {
             navigation.navigate('register');
           }}
         >
-          Read
+          Details
         </Text>
       </View>
 
