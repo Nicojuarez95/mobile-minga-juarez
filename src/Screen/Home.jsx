@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 
-import bg from '../../assets/fondoHome.png';
+import bg from '../../assets/home.png';
 import TituloSeccion1Hero1 from '../Components/TituloSeccion1Hero';
 import Parrafo1Seccion1Hero1 from '../Components/Parrafo1Seccion1Hero';
 import BotonSeccion1Hero1 from '../Components/BotonSeccion1Hero';
-import ContFormRegister from './ContFormRegister';
+import ContFormLogin from './ContFormLogin';
 
 export default function Seccion1Hero1() {
   return (
@@ -13,13 +13,13 @@ export default function Seccion1Hero1() {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.seccion}>
           <View style={styles.texto}>
-            <TituloSeccion1Hero1 text='Your favorite comic book store ✨' />
-            <Parrafo1Seccion1Hero1 text='Explore our catalog to live the adventure of your life' />
-            <BotonSeccion1Hero1 text="Let's go!" />
+            <TituloSeccion1Hero1 text='Best Manga Reader' />
+            <Parrafo1Seccion1Hero1 text='Find the perfect manga for you' />
+            <BotonSeccion1Hero1 text="Read" />
           </View>
         </View>
         <View style={styles.seccion2}>
-          <ContFormRegister />
+          <ContFormLogin />
         </View>
       </ScrollView>
     </ImageBackground>

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import google from "../../assets/Googlee.png"
 
 export default function FormRegister() {
   const [name, setName] = useState('');     
   const [email, setEmail] = useState('');     
   const [photo, setPhoto] = useState('');     
   const [password, setPassword] = useState('');
+  const navigation= useNavigation()
 
   async function handleSubmit() {
     let data = {
@@ -21,7 +24,7 @@ export default function FormRegister() {
         await axios.post(url, data)
         console.log('creado')
     } catch (error) {
-        console.log('ERROR'+error)
+        console.log(error)
     }
 }
   
@@ -30,26 +33,34 @@ export default function FormRegister() {
     <View style={styles.container}>
       <View style={styles.fieldset}>
         <Text style={styles.legend}>Name</Text>
-        <TextInput style={styles.input} id="name" name="name" required onChangeText={(inputText => setName(inputText))} />
-        {/* <Image source={require('')} /> */}
+        <View style={styles.legendCont}>
+          <TextInput style={styles.input} id="name" name="name" required onChangeText={(inputText => setName(inputText))} />
+          
+        </View>
       </View>
 
       <View style={styles.fieldset}>
         <Text style={styles.legend}>Email</Text>
-        <TextInput style={styles.input} id="email" name="email" required onChangeText={(inputText => setEmail(inputText))}/>
-        {/* <Image source={require('')} /> */}
+        <View style={styles.legendCont}>
+          <TextInput style={styles.input} id="email" name="email" required onChangeText={(inputText => setEmail(inputText))} />
+          
+        </View>
       </View>
 
       <View style={styles.fieldset}>
         <Text style={styles.legend}>Photo</Text>
-        <TextInput style={styles.input} id="photo" name="photo" required onChangeText={(inputText => setPhoto(inputText))}/>
-        {/* <Image source={require('')} /> */}
+        <View style={styles.legendCont}>
+          <TextInput style={styles.input} id="photo" name="photo" required onChangeText={(inputText => setPhoto(inputText))} />
+         
+        </View>
       </View>
 
       <View style={styles.fieldset}>
         <Text style={styles.legend}>Password</Text>
-        <TextInput style={styles.input} id="password" name="password" required onChangeText={(inputText => setPassword(inputText))}/>
-        {/* <Image source={require('')} /> */}
+        <View style={styles.legendCont}>
+          <TextInput style={styles.input} secureTextEntry={true} id="password" name="password" required onChangeText={(inputText => setPassword(inputText))} />
+          
+        </View>
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -57,10 +68,10 @@ export default function FormRegister() {
       </TouchableOpacity>
 
       <View style={styles.divGoogle}>
-        {/* <Image source={require('')} /> */}
         <TouchableOpacity style={styles.button2} onPress={() => {
             // handle Google sign up logic here
           }}>
+          <Image style={styles.googleImg} source={google} />
           <Text style={styles.buttonText2}>Sign up with Google</Text>
         </TouchableOpacity>
       </View>
@@ -69,14 +80,8 @@ export default function FormRegister() {
         <Text>
           Already have an account?
           <Text style={styles.parrafosFormText} onPress={() => {
-              navigation.navigate("SignIn");
+              navigation.navigate("LogIn");
             }}> Log in</Text> 
-        </Text>
-        <Text>
-          Go back to 
-          <Text style={styles.parrafosFormText} onPress={() => {
-              navigation.navigate("SignIn");
-            }}> home page</Text> 
         </Text>
       </View>
     </View>
@@ -96,12 +101,30 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "flex-start",
     width: 410,
-    height: 60,
+    height: 65,
     width: "90%",
     justifyContent: "flex-start",
-    borderRadius: 10,
     background: "#EBEBEB",
-    borderWidth: 1,
+    borderBottomWidth: 1,
+  },
+  legendCont:{
+    display: "flex",
+    width:"100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  imagen:{
+    width: 19,
+    height: 19,
+    marginBottom: 10,
+  },
+  googleImg: {
+    width: 30,
+    height:30
+  },
+  buttonText2:{
+    color: "gray"
   },
   legend: {
     marginLeft: 10,
@@ -109,10 +132,10 @@ const styles = StyleSheet.create({
     lineHeight: 15,
     letterSpacing: 10,
     fontWeight: 500,
-    color: "#4338CA",
+    color: "#5F5F5F",
   },
   input: {
-    width: "95%",
+    width: "90%",
     backgroundColor: "transparent",
     height: 45,
     fontSize: 15,
@@ -132,7 +155,7 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: "#4338CA",
+    backgroundColor: "black",
     borderRadius: 10,
     height: 60,
     marginBottom: 20,
@@ -154,6 +177,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
+    flexDirection: "row",
+    gap: 20
   },
   
   buttonText3: {
@@ -182,7 +207,7 @@ const styles = StyleSheet.create({
   },
 
   parrafosFormText:{
-    color: "#4338CA",
+    color: "#FA0003",
     fontWeight: 700,
   },
 });

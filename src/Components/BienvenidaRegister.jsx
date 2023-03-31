@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-import Logomr from '../../assets/Logomr.png';
+import Logomr from '../../assets/Logo2.png';
 
 export default function BienvenidaRegister(props) {
   return (

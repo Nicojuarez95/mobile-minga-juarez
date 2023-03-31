@@ -10,7 +10,7 @@ export default function TituloSeccion1Hero1(props) {
 const styles = StyleSheet.create({
   titulo: {
     color: "white",
-    fontSize: 34,
+    fontSize: 44,
     textAlign: "center",
     fontWeight: 'bold',
     marginVertical: 10,
