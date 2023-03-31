@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import bottomTabsActions from '../Store/Perfil/action';  
@@ -15,6 +16,7 @@ export default function FormLogin() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch()
   let state = useSelector(store => store.bottomTabsReducer.state)
+  const [loading, setLoading] = useState()
 
   async function handleSubmit() {
     let data = {
@@ -25,6 +27,7 @@ export default function FormLogin() {
     let url = 'https://minga-host.onrender.com/auth/signin';
 
     try {
+      setLoading(true)
       const response = await axios.post(url, data);
       const { token, user } = response.data;
       
@@ -42,8 +45,10 @@ export default function FormLogin() {
       const storedUser = await AsyncStorage.getItem('user');
       console.log('Usuario almacenado:', storedUser);
       console.log('logueado');
-
       dispatch(reloadBottomTabs({ state: !state }))
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +87,7 @@ export default function FormLogin() {
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Sign in</Text>
+        <Spinner visible={loading} textContent={'Loading...'} textStyle={{ color: '#FFF' }} />
       </TouchableOpacity>
 
       <View style={styles.divGoogle}>

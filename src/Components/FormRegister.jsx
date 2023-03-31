@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 import google from "../../assets/Googlee.png"
 
 export default function FormRegister() {
@@ -10,6 +11,7 @@ export default function FormRegister() {
   const [photo, setPhoto] = useState('');     
   const [password, setPassword] = useState('');
   const navigation= useNavigation()
+  const [loading, setLoading] = useState()
 
   async function handleSubmit() {
     let data = {
@@ -21,8 +23,12 @@ export default function FormRegister() {
     
     let url = 'https://minga-host.onrender.com/auth/signup'
     try {
+      setLoading(true)
         await axios.post(url, data)
         console.log('creado')
+        setTimeout(() => {
+        setLoading(false);
+      }, 3000);
     } catch (error) {
         console.log(error)
     }
@@ -65,6 +71,7 @@ export default function FormRegister() {
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Sign up</Text>
+        <Spinner visible={loading} textContent={'Loading...'} textStyle={{ color: '#FFF' }} />
       </TouchableOpacity>
 
       <View style={styles.divGoogle}>

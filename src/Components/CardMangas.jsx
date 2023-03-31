@@ -37,7 +37,7 @@ export default function CardMangas({title, category, photo }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "rgba(238, 238, 238, 0.8)",
+    backgroundColor: "rgba(238, 238, 238, 1)",
     flexDirection: 'row',
     marginVertical: 10,
     width:"95%",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   read: {
-    backgroundColor: '#000',
+    backgroundColor: '#E54949',
     color: '#FFF',
     paddingVertical: 5,
     paddingHorizontal: 10,

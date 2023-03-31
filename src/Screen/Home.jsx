@@ -18,9 +18,9 @@ export default function Seccion1Hero1() {
             <BotonSeccion1Hero1 text="Read" />
           </View>
         </View>
-        <View style={styles.seccion2}>
+        <ScrollView style={styles.seccion2}>
           <FormLogin />
-        </View>
+        </ScrollView>
       </ScrollView>
     </ImageBackground>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from 'react-native';
+import { Button, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +14,7 @@ export default function LogOut() {
   const dispatch = useDispatch()
   let state = useSelector(store => store.bottomTabsReducer.state)
   let [token, setToken] = useState('')
+  const [loading, setLoading] = useState()
 
   useFocusEffect(
     React.useCallback(() => {
@@ -34,6 +36,7 @@ export default function LogOut() {
   const handleLogOut = async () => {
     let url = 'https://minga-host.onrender.com/auth/signout'
     try {
+      setLoading(true)
       await axios.post(url," ",headers)
 
       await AsyncStorage.removeItem('token');
@@ -46,6 +49,10 @@ export default function LogOut() {
       console.log('Usuario almacenado:', storedUser);
   
       dispatch(reloadBottomTabs({ state: false })); // Actualiza el estado de la aplicación de manera síncrona
+      dispatch(reloadBottomTabs({ state: !state }))
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
       navigation.navigate('Home');
       
     } catch (e) {
@@ -53,5 +60,10 @@ export default function LogOut() {
     }
   };
 
-  return <Button title="Log Out" onPress={handleLogOut} />;
+  return (
+  <TouchableOpacity>
+    <Button title="Log Out" onPress={handleLogOut}/>
+    <Spinner visible={loading} textContent={'Loading...'} textStyle={{ color: '#FFF' }} />
+    </TouchableOpacity>
+  )
 }
