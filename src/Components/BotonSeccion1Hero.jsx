@@ -1,9 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function BotonSeccion1Hero1(props) {
+  const navigation= useNavigation()
+
   return (
-    <TouchableOpacity style={styles.boton} onPress={() => console.log('Presionó el botón')}>
+    <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate("Mangas")}>
       <Text style={styles.texto}>{props.text || props.children}</Text>
     </TouchableOpacity>
   );

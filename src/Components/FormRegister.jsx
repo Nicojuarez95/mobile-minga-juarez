@@ -80,7 +80,7 @@ export default function FormRegister() {
         <Text>
           Already have an account?
           <Text style={styles.parrafosFormText} onPress={() => {
-              navigation.navigate("LogIn");
+              navigation.navigate("Home");
             }}> Log in</Text> 
         </Text>
       </View>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 12,
     lineHeight: 15,
-    letterSpacing: 10,
+    letterSpacing: 1,
     fontWeight: 500,
     color: "#5F5F5F",
   },

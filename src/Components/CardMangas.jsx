@@ -1,45 +1,48 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import dbz from "../../assets/dbz.png"
 
-export default function CardMangas() {
-    const navigation= useNavigation()
+export default function CardMangas({title, category, photo }) {
+  const navigation = useNavigation();
+  const categoryColor = {
+    shonen: { color: '#EF8481' },
+    shojo: { color: '#00BA88' },
+    seinen: { color: '#FC9C57' },
+    comic: { color: '#8883F0' }
+  };
 
   return (
     <View style={styles.card}>
-        <View style={styles.category} />
-        <View style={styles.text1}>
-            <View>
-                <Text style={styles.title}>DBZ</Text>
-                <Text >Comic</Text>
-            </View>
-
-            <Text style={styles.read} onPress={() => {
-                navigation.navigate("register");
-                }}>Read</Text>
+      <View style={styles.text1}>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={[{ fontSize: 16 }, categoryColor[category]]}>{category}</Text>
         </View>
+        <Text
+          style={styles.read}
+          onPress={() => {
+            navigation.navigate('register');
+          }}
+        >
+          Read
+        </Text>
+      </View>
 
-        <View style={styles.imgContainer}>
-            <Image style={styles.imgManga} source={dbz}/>
-        </View>
+      <View style={styles.imgContainer}>
+        <Image style={styles.imgManga} source={photo} />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   card: {
+    backgroundColor: "rgba(238, 238, 238, 0.8)",
     flexDirection: 'row',
     marginVertical: 10,
-    width:"80%",
+    width:"95%",
     borderWidth:1,
-    borderRadius: 6
-  },
-  category: {
-    width: 10,
-    height: '100%',
-    borderTopLeftRadius: 5,
-    borderBottomLeftRadius: 5,
+    borderRadius: 16
   },
   shonen: {
     backgroundColor: '#F06C9B',
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   read: {
-    backgroundColor: '#F06C9B',
+    backgroundColor: '#000',
     color: '#FFF',
     paddingVertical: 5,
     paddingHorizontal: 10,
@@ -79,5 +82,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     resizeMode: 'cover',
+    borderRadius: 16
   },
 });

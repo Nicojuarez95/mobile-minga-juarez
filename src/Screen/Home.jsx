@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { View, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 
 import bg from '../../assets/home.png';
 import TituloSeccion1Hero1 from '../Components/TituloSeccion1Hero';
