@@ -15,7 +15,7 @@ export default function BotonSeccion1Hero1(props) {
 const styles = StyleSheet.create({
   boton: {
     backgroundColor: '#4338CA',
-    padding: 10,
+    padding: 10, 
     width: 290,
     height: 50,
     alignItems: "center",
