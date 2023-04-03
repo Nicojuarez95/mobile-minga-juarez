@@ -4,6 +4,7 @@ import { View, TextInput, Text, TouchableOpacity, StyleSheet, Image } from 'reac
 import { useNavigation } from '@react-navigation/native';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 import google from "../../assets/Googlee.png"
+import { Alert } from 'react-native';
 
 export default function FormRegister() {
   const [name, setName] = useState('');     
@@ -29,8 +30,14 @@ export default function FormRegister() {
         setTimeout(() => {
         setLoading(false);
       }, 3000);
+      navigation.navigate("Home")
+      Alert.alert(
+        'Account created!',
+        'Your account has been created successfully.',
+      );
     } catch (error) {
         console.log(error)
+        setLoading(false);
     }
 }
   

@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import BienvenidaRegister from './BienvenidaRegister';
 import axios from 'axios';
 import google from "../../assets/Googlee.png"
+import { Alert } from 'react-native';
 
 export default function FormLogin() {
   const navigation = useNavigation();
@@ -48,9 +49,14 @@ export default function FormLogin() {
       dispatch(reloadBottomTabs({ state: !state }))
       setTimeout(() => {
         setLoading(false);
-      }, 2000);
+      }, 1500);
+      Alert.alert(
+        'User logged in!',
+        'Press "OK" to read',
+      );
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
   return (

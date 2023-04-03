@@ -7,6 +7,9 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import bottomTabsActions from '../Store/Perfil/action';  
+import detailsActions from "../Store/Details/actions"
+
+const { mangaClicked } = detailsActions
 const { reloadBottomTabs } = bottomTabsActions
 
 export default function LogOut() {
@@ -47,9 +50,10 @@ export default function LogOut() {
       const storedUser = await AsyncStorage.getItem('user');
       console.log('Token almacenado:', storedToken);
       console.log('Usuario almacenado:', storedUser);
-  
+      dispatch(mangaClicked( {state:false} ))
       dispatch(reloadBottomTabs({ state: false })); // Actualiza el estado de la aplicación de manera síncrona
       dispatch(reloadBottomTabs({ state: !state }))
+
       setTimeout(() => {
         setLoading(false);
       }, 3000);

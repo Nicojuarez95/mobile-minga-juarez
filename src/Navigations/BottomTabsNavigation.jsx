@@ -9,12 +9,15 @@ import Mangas from "../Screen/Mangas";
 import Perfil from "../Screen/Perfil";
 import LogOut from "../Screen/LogOut";
 import { FontAwesome } from '@expo/vector-icons';
+import Details from "../Screen/Details";
 
 const Tab = createBottomTabNavigator();
 
 function BottomTabsNavigation() {
   let state = useSelector((store) => store.bottomTabsReducer.state);
   let [token, setToken] = useState("");
+
+  const details = useSelector((store) => store.mangaClickReducer.state);
 
   useFocusEffect(
     React.useCallback(() => {
@@ -32,29 +35,42 @@ function BottomTabsNavigation() {
 
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        style: {
-          backgroundColor: '#FFF',
-          borderTopColor: 'transparent',
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#111111",
+          borderTopColor: "transparent",
           height: 55,
           paddingBottom: 5,
           paddingTop: 5,
           elevation: 0,
           shadowOpacity: 0,
         },
-        labelStyle: {
+        tabBarLabelStyle: {
           fontSize: 10,
           marginBottom: 5,
         },
-        activeTintColor: '#EB5757',
-        inactiveTintColor: '#9B9B9B',
-        tabStyle: {
+        tabBarActiveTintColor: "#E54949",
+        tabBarInactiveTintColor: "#9B9B9B",
+        tabBarTabStyle: {
           paddingTop: 0,
           paddingBottom: 0,
         },
-        
       }}
     >
+
+       { details ? (<Tab.Screen
+      name="Details"
+      component={Details}
+      options={{
+        headerShown: false,
+        tabBarLabel: 'Details',
+        tabBarIcon: ({ color }) => (
+          <FontAwesome name="info" size={24} color={color} />
+        ),
+      }}
+    />) : (<></>)}
+      
       <Tab.Screen
         name="Home"
         component={Home}
@@ -95,17 +111,17 @@ function BottomTabsNavigation() {
           </Tab.Screen>
         </>
       ) : (
-        <Tab.Screen
-          name="register"
-          component={ContFormRegister}
-          options={{
-            headerShown: false,
-            tabBarLabel: 'Register',
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name="user-circle-o" size={24} color={color} />
-            ),
-          }}
-        />
+        <><Tab.Screen
+        name="register"
+        component={ContFormRegister}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Register',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="user-circle-o" size={24} color={color} />
+          ),
+        }}
+      /></>
       )}
     </Tab.Navigator>
   );
